@@ -1,0 +1,10 @@
+export(adapGridProf)
+export(dirmult)
+export(dirmult.summary)
+export(equalTheta)
+export(estProfLogLik)
+export(gridProf)
+export(nullTest)
+export(weirMoM)
+
+

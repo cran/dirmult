@@ -1,0 +1,13 @@
+citHeader("To cite package 'dirmult' in publications use:")
+
+desc <- packageDescription("dirmult")
+year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", desc$Date)
+vers <- paste("R package version", desc$Version)
+
+citEntry(entry="Manual",
+	title = "dirmult: Estimation in Dirichlet-Multinomial Models",
+	author = personList(as.person("Torben Tvedebrink")),
+year = 2009,
+note = 0.1,
+textVersion =
+paste("Torben Tvedebrink (",year,"). dirmult: Estimation in Dirichlet-Multinomial Models. ",vers,".", sep=""))
