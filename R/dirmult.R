@@ -414,3 +414,20 @@ nullTest <- function(data,m=1000,prec=6){
   res[m+1,] <- c(tmp,weirMoM(data),mnloglik(data))
   list(data=dats,res=res)
 }
+
+rdirichlet <- function(n=1,alpha){
+  Gam <- matrix(0,n,length(alpha))
+  for(i in 1:length(alpha)) Gam[,i] <- rgamma(n,shape=alpha[i])
+  Gam/rowSums(Gam)
+}
+
+simPop <- function(J=10,K=20,n,pi,theta){
+  if(length(n)==1) n <- rep(n,J)
+  if(missing(pi)) pi <- rnorm(K,mean=14,sd=4)
+  else K <- length(pi)
+  pi <- pi/sum(pi)
+  P <- rdirichlet(J,pi*(1-theta)/theta)
+  X <- matrix(0,J,K)
+  for(i in 1:J) X[i,] <- rmultinom(1,n[i],P[i,])
+  list(theta=theta,pi=pi,data=X)
+}

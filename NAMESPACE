@@ -6,5 +6,6 @@ export(estProfLogLik)
 export(gridProf)
 export(nullTest)
 export(weirMoM)
+export(simPop)
 
 
