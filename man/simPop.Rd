@@ -1,6 +1,5 @@
 \name{simPop}
 \alias{simPop}
-\keyword{htest}
 \concept{Genetics}
 \concept{Overdispersion}
 \concept{Dirichlet-multinomial}

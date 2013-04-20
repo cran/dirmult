@@ -1,6 +1,5 @@
 \name{dirmult}
 \alias{dirmult}
-\keyword{htest}
 \concept{Genetics}
 \concept{Overdispersion}
 \concept{Dirichlet-multinomial}
@@ -42,16 +41,16 @@
   \eqn{\pi_1,\dots,\pi_{k-1}}{\pi_1,\dots,\pi_{k-1}} and 
   \eqn{\theta}{theta}.
 }
-\usage{dirmult(data, init, initscalar=30, epsilon=10^(-4), trace=TRUE, mode)}
+\usage{dirmult(data, init, initscalar, epsilon=10^(-4), trace=TRUE, mode)}
 \arguments{
 \item{data}{A matrix or table with counts. Rows represent subpopulations
   and columns the different categories of the data. Zero rows or columns
   are automaticly removed.} 
 \item{init}{Initial values for the \eqn{\gamma}{gamma}-vector. Default
   is empty implying the column-proportions are used as initial values.}
-\item{initscalar}{Initial value for \eqn{\theta}{theta}. Default value
-  is 30 which approximately corresponds to a \eqn{\theta}{theta} value
-  of 0.03 which is commonly assumed in genetics.}
+\item{initscalar}{Initial value for
+  \eqn{(1-\theta)/\theta}{(1-theta)/theta}. Default value 
+  is (1-MoM)/MoM where MoM a the method of moment estimate.}
 \item{epsilon}{Convergence tolerance. On termination the difference
   between to succeeding log-likelihoods must be smaller than
   epsilon.}
@@ -76,7 +75,7 @@
 }
 \examples{
 data(us)
-fit <- dirmult(us[[1]],epsilon=10^(-12),trace=FALSE)
+fit <- dirmult(us[[1]],epsilon=10^(-4),trace=FALSE)
 dirmult.summary(us[[1]],fit)
 }
 

@@ -1,6 +1,5 @@
 \name{weirMoM}
 \alias{weirMoM}
-\keyword{htest}
 \concept{Genetics}
 \concept{Overdispersion}
 \concept{Dirichlet-multinomial}

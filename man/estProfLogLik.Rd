@@ -1,6 +1,5 @@
 \name{estProfLogLik}
 \alias{estProfLogLik}
-\keyword{htest}
 \concept{Genetics}
 \concept{Overdispersion}
 \concept{Dirichlet-multinomial}

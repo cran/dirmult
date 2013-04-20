@@ -1,6 +1,5 @@
 \name{nullTest}
 \alias{nullTest}
-\keyword{htest}
 \concept{Genetics}
 \concept{Overdispersion}
 \concept{Dirichlet-multinomial}
@@ -28,5 +27,5 @@
 }
 \examples{
 data(us)
-nullTest(us[[1]],m=50)
+\dontrun{nullTest(us[[1]],m=50)}
 }

@@ -7,5 +7,6 @@ export(gridProf)
 export(nullTest)
 export(weirMoM)
 export(simPop)
+export(rdirichlet)
 
 

@@ -1,6 +1,5 @@
 \name{gridProf}
 \alias{gridProf}
-\keyword{htest}
 \concept{Genetics}
 \concept{Overdispersion}
 \concept{Dirichlet-multinomial}
@@ -31,7 +30,7 @@
 \examples{
 data(us)
 fit <- dirmult(us[[1]],epsilon=10^(-12),trace=FALSE)
-grid <- gridProf(us[[1]],fit$theta,from=-0.001,to=0.001,len=10)
-plot(loglik ~ theta, data=grid, type="l")
+\dontrun{grid <- gridProf(us[[1]],fit$theta,from=-0.001,to=0.001,len=10)
+plot(loglik ~ theta, data=grid, type="l")}
 }
 

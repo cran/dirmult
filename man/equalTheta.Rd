@@ -1,6 +1,5 @@
 \name{equalTheta}
 \alias{equalTheta}
-\keyword{htest}
 \concept{Genetics}
 \concept{Overdispersion}
 \concept{Dirichlet-multinomial}
@@ -27,7 +26,7 @@
   \code{\link{dirmult}}
 }
 \examples{
-data(us)
+\dontrun{data(us)
 fit <- lapply(us[1:2],dirmult,epsilon=10^(-12),trace=FALSE)
 thetas <- unlist(lapply(fit,function(x) x$theta))
 logliks <- unlist(lapply(fit,function(x) x$loglik))
@@ -35,5 +34,5 @@ fit1 <- equalTheta(us[c(1:2)],theta=mean(thetas),epsilon=10^(-12))
 lr <- -2*(fit1$loglik-sum(logliks))
 1-pchisq(lr,df=1)
 fit1$theta[[1]]
-}
+}}
 
