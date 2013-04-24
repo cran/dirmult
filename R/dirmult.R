@@ -6,9 +6,9 @@ ll <- function(x,t) log(t+x-1)
 ## Computes Beta-Binomial probabilities
 dbbin.ab <- function(x,n,a,b){
   res <- lchoose(n,x)
-  if(x==0) res <- res else res <- res+sum(sapply(1:x,ll,t=a))
-  if(x==n) res <- res else res <- res+sum(sapply(1:(n-x),ll,t=b))
-  res <- res-sum(sapply(1:n,ll,t=a+b))
+  if(x==0) res <- res else res <- res+sum(unlist(lapply(list(1:x),ll,t=a)))
+  if(x==n) res <- res else res <- res+sum(unlist(lapply(list(1:(n-x)),ll,t=b)))
+  res <- res-sum(unlist(lapply(list(1:n),ll,t=a+b)))
   exp(res)
 }
 
@@ -18,10 +18,10 @@ u <- function(x,t){
   S <- rep(0,nc)
   ts <- sum(t)
   for(j in 1:nrow(x)){
-    Sn <- sum(sapply(1:(rowSums(x)[j]),uu,t=ts))
+    Sn <- sum(unlist(lapply(list(1:(rowSums(x)[j])),uu,t=ts)))
     for(i in 1:nc){
       if(x[j,i]==0) Sij <- 0
-      else Sij <- sum(sapply(1:(x[j,i]),uu,t=t[i]))
+      else Sij <- sum(unlist(lapply(list(1:(x[j,i])),uu,t=t[i])))
       S[i] <- S[i] - Sn + Sij
     }
   }
@@ -35,10 +35,10 @@ profU <- function(x,t,tp){
   nc <- ncol(x)
   ts <- sum(t)
   for(j in 1:nrow(x)){
-    Sn <- sum(sapply(1:(rowSums(x)[j]),uu,t=ts))
+    Sn <- sum(unlist(lapply(list(1:(rowSums(x)[j])),uu,t=ts)))
     for(i in 1:nc){
       if(x[j,i]==0) Sij <- 0
-      else Sij <- sum(sapply(1:(x[j,i]),uu,t=t[i]))
+      else Sij <- sum(unlist(lapply(list(1:(x[j,i])),uu,t=t[i])))
       S[i] <- S[i] - Sn + Sij
     }
   }
@@ -54,10 +54,10 @@ equalU <- function(x,t,tp,l){
   nc <- ncol(x)
   ts <- sum(t)
   for(j in 1:nrow(x)){
-    Sn <- sum(sapply(1:(rowSums(x)[j]),uu,t=ts))
+    Sn <- sum(unlist(lapply(list(1:(rowSums(x)[j])),uu,t=ts)))
     for(i in 1:nc){
       if(x[j,i]==0) Sij <- 0
-      else Sij <- sum(sapply(1:(x[j,i]),uu,t=t[i]))
+      else Sij <- sum(unlist(lapply(list(1:(x[j,i])),uu,t=t[i])))
       S[i] <- S[i] - Sn + Sij
     }
   }
@@ -73,10 +73,10 @@ obsfim <- function(x,t){
   od <- 0
   ts <- sum(t)
   for(j in 1:nrow(x)){
-    od <- od + sum(sapply(1:(rowSums(x)[j]),ff,t=ts))
+    od <- od + sum(unlist(lapply(list(1:(rowSums(x)[j])),ff,t=ts)))
     for(i in 1:nc){
       if(x[j,i]==0) Dij <- 0
-      else Dij <- sum(sapply(1:(x[j,i]),ff,t=t[i]))
+      else Dij <- sum(unlist(lapply(list(1:(x[j,i])),ff,t=t[i])))
       D[i] <- D[i] + Dij
     }
   }
@@ -104,7 +104,7 @@ expfim <- function(x,t){
       }
     }
     inner <- inner + colSums(P*R)
-    od <- od + sum(sapply(1:(Sn[j]),ff,t=ts))
+    od <- od + sum(unlist(lapply(list(1:(Sn[j])),ff,t=ts)))
   }
   F <- matrix(-1*od,K,K)
   diag(F) <- diag(F)+inner
@@ -117,11 +117,11 @@ loglik <- function(x,t){
   ts <- sum(t)
   nc <- ncol(x)
   for(j in 1:nrow(x)){
-    l <- l - sum(sapply(1:(rowSums(x)[j]),ll,t=ts))
+    l <- l - sum(unlist(lapply(list(1:(rowSums(x)[j])),ll,t=ts)))
 # maybe not    lij <- 0 ## NEW LINE: This initializes lij to zero for each row. Otherwise lij is a cummulant. ##
     for(i in 1:nc){
       if(x[j,i]==0) lij <- 0
-      else lij <- sum(sapply(1:(x[j,i]),ll,t=t[i]))
+      else lij <- sum(unlist(lapply(list(1:(x[j,i])),ll,t=t[i])))
       l <- l + lij
     }
   }
