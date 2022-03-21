@@ -8,5 +8,4 @@ export(nullTest)
 export(weirMoM)
 export(simPop)
 export(rdirichlet)
-
-
+importFrom("stats", "rgamma", "rmultinom", "rnorm")

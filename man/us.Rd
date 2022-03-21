@@ -6,7 +6,6 @@
   9 STR loci were typed in sample populations of African Americans,
   U.S. Caucasians, Hispanics, Bahamians, Jamaicans, and Trinidadians.
 }
-\usage{us}
 \format{A list of tables with allele counts.}
 \source{http://www.fbi.gov/hq/lab/fsc/backissu/july1999/budowle.htm}
 \references{
